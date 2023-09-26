@@ -1,0 +1,165 @@
+{
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "extends": [
+    "airbnb",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/errors",
+    "plugin:import/typescript",
+    "plugin:import/warnings",
+    "plugin:promise/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:react/recommended",
+    "prettier"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "Response": "readonly",
+    "SharedArrayBuffer": "readonly",
+    "WebSocket": false,
+    "fetch": false
+  },
+  "overrides": [
+    {
+      "files": ["**/*.tsx"],
+      "rules": {
+        "react/prop-types": "off"
+      }
+    }
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint", "simple-import-sort", "internal-rules", "restrict-imports"],
+  "rules": {
+    "@typescript-eslint/ban-ts-ignore": "off",
+    "@typescript-eslint/ban-types": [
+      "error",
+      {
+        "extendDefaults": true,
+        "types": {
+          "object": false,
+          "{}": false,
+          "React.FC": {
+            "message": "Please use React.ComponentType instead OR extend Props with PropTypeWithChildren",
+            "fixWith": "React.ComponentType"
+          },
+          "PropsWithChildren": {
+            "message": "Please use WithChildren OR WithOptionalChildren types instead"
+          }
+        }
+      }
+    ],
+    "@typescript-eslint/camelcase": "off",
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "custom": {
+          "match": true,
+          "regex": "^I[A-Z]"
+        },
+        "format": ["PascalCase"],
+        "selector": "interface"
+      }
+    ],
+    "@typescript-eslint/no-empty-function": [
+      "error",
+      {
+        "allow": ["arrowFunctions"]
+      }
+    ],
+    "@typescript-eslint/no-shadow": "error",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_.+",
+        "varsIgnorePattern": "^_.+"
+      }
+    ],
+    "@typescript-eslint/no-use-before-define": "error",
+    "@typescript-eslint/no-var-requires": "off",
+    "camelcase": "off",
+    "global-require": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/no-default-export": "error",
+    "import/no-named-as-default": "error",
+    "import/order": "off",
+    "import/prefer-default-export": "off",
+    "internal-rules/no-unused-styles": "error",
+    "max-len": [
+      "error",
+      {
+        "code": 140,
+        "ignoreComments": true
+      }
+    ],
+    "no-empty-function": "off",
+    "no-restricted-exports": "off",
+    "no-restricted-imports": [
+      "error",
+      {
+        "paths": [
+          {
+            "name": "lodash",
+            "importNames": ["default"],
+            "message": "Use destructive import from lodash instead: import { ... } from 'lodash'"
+          }
+        ]
+      }
+    ],
+    "no-restricted-properties": [
+      "error",
+      {
+        "object": "Dimensions",
+        "property": "get",
+        "message": "Please use useWindowDimensions instead"
+      }
+    ],
+    "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],
+    "no-shadow": "off",
+    "no-tabs": "off",
+    "no-underscore-dangle": "off",
+    "no-unused-vars": "off",
+    "no-use-before-define": "off",
+    "prettier/prettier": "off",
+    "promise/always-return": "off",
+    "promise/catch-or-return": "off",
+    "promise/no-nesting": "off",
+    "react-hooks/exhaustive-deps": "error",
+    "react/function-component-definition": "off",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".jsx", ".tsx"]
+      }
+    ],
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-sort-props": [
+      2,
+      {
+        "callbacksLast": true,
+        "shorthandFirst": true,
+        "ignoreCase": false,
+        "reservedFirst": ["children", "ref"]
+      }
+    ],
+    "react/no-multi-comp": 1,
+    "react/no-unused-class-component-methods": "off",
+    "react/require-default-props": "off",
+    "simple-import-sort/exports": "error",
+    "simple-import-sort/imports": "error",
+    "sort-imports": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
