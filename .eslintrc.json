@@ -37,7 +37,7 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["react", "@typescript-eslint", "simple-import-sort", "internal-rules", "restrict-imports"],
+  "plugins": ["react", "@typescript-eslint", "simple-import-sort", "restrict-imports"],
   "rules": {
     "@typescript-eslint/ban-ts-ignore": "off",
     "@typescript-eslint/ban-types": [
@@ -92,7 +92,6 @@
     "import/no-named-as-default": "error",
     "import/order": "off",
     "import/prefer-default-export": "off",
-    "internal-rules/no-unused-styles": "error",
     "max-len": [
       "error",
       {
