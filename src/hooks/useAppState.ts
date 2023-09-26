@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { AppState, type AppStateStatus } from 'react-native';
+import { type AppStateStatus, AppState } from 'react-native';
 
 /**
  * Get the current app state

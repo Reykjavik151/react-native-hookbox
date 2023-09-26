@@ -1,53 +1,7 @@
 import React, { useCallback } from 'react';
-
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+// eslint-disable-next-line import/no-unresolved
 import { useAppState, useCachedState, useDebouncedValue, useMount } from 'react-native-hookbox';
-
-export default function App() {
-  const [prevCounter, counter, setCounter] = useCachedState(0);
-
-  useMount(() => {
-    setCounter(10);
-  });
-
-  const appState = useAppState();
-
-  const debouncedCounter = useDebouncedValue(counter, 2000);
-
-  const increment = useCallback(() => {
-    setCounter(prev => prev + 1);
-  }, []);
-
-  const reset = useCallback(() => {
-    setCounter(0);
-  }, []);
-
-  return (
-    <View style={styles.container}>
-      <View style={styles.hooksInfoContainer}>
-        <Text>AppState: {appState}</Text>
-        <Text>CachedState, prev: {prevCounter}</Text>
-        <Text>Debounced: {debouncedCounter}</Text>
-      </View>
-
-      <Text>COUNTER VALUE: {counter}</Text>
-
-      <TouchableOpacity
-        onPress={increment}
-        style={styles.button}
-      >
-        <Text style={styles.buttonTitle}>Increment counter value</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        onPress={reset}
-        style={styles.button}
-      >
-        <Text style={styles.buttonTitle}>Reset counter value</Text>
-      </TouchableOpacity>
-    </View>
-  );
-}
 
 const styles = StyleSheet.create({
   container: {
@@ -77,3 +31,50 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 });
+
+// eslint-disable-next-line import/no-default-export
+export default function App() {
+  const [prevCounter, counter, setCounter] = useCachedState(0);
+
+  useMount(() => {
+    setCounter(10);
+  });
+
+  const appState = useAppState();
+
+  const debouncedCounter = useDebouncedValue(counter, 2000);
+
+  const increment = useCallback(() => {
+    setCounter(prev => prev + 1);
+  }, [setCounter]);
+
+  const reset = useCallback(() => {
+    setCounter(0);
+  }, [setCounter]);
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.hooksInfoContainer}>
+        <Text>AppState: {appState}</Text>
+        <Text>CachedState, prev: {prevCounter}</Text>
+        <Text>Debounced: {debouncedCounter}</Text>
+      </View>
+
+      <Text>COUNTER VALUE: {counter}</Text>
+
+      <TouchableOpacity
+        style={styles.button}
+        onPress={increment}
+      >
+        <Text style={styles.buttonTitle}>Increment counter value</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={styles.button}
+        onPress={reset}
+      >
+        <Text style={styles.buttonTitle}>Reset counter value</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
