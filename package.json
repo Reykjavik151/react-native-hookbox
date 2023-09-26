@@ -1,6 +1,6 @@
 {
   "name": "react-native-hookbox",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Outstanding set of the most powerful React Hooks!",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
