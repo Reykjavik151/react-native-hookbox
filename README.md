@@ -45,6 +45,24 @@ const debouncedState = useDebouncedValue(state, 1000);
 // ...
 ```
 
+### useKeyboardListeners
+
+```ts
+import { useKeyboardListeners } from 'react-native-hookbox';
+
+// ...
+
+const onKeyboardShow = useCallback(() => {
+  // ...
+}, []);
+
+const onKeyboardHide = useCallback(() => {
+  // ...
+}, []);
+
+useKeyboardListeners(onKeyboardShow, onKeyboardHide);
+```
+
 ### useMount
 
 useEffect with an empty dependency array.
