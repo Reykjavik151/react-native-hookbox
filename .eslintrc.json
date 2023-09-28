@@ -39,6 +39,16 @@
   },
   "plugins": ["react", "@typescript-eslint", "simple-import-sort", "restrict-imports"],
   "rules": {
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
     "@typescript-eslint/ban-ts-ignore": "off",
     "@typescript-eslint/ban-types": [
       "error",
