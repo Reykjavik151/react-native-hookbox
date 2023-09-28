@@ -16,6 +16,10 @@ Detects the current state of the app through the AppState API from ReactNativeCo
 The current app states: "active" | "background" | "inactive" | "unknown" | "extension"
 
 ```ts
+import { useAppState } from 'react-native-hookbox';
+
+// ...
+
 const appState = useAppState();
 
 useEffect(() => {
@@ -46,6 +50,10 @@ const debouncedState = useDebouncedValue(state, 1000);
 useEffect with an empty dependency array.
 
 ```ts
+import { useMount } from 'react-native-hookbox';
+
+// ...
+
 useMount(() => {
   console.log('component has been mounted');
 });
@@ -56,6 +64,10 @@ useMount(() => {
 Returns the previous value in the previous render iteration.
 
 ```ts
+import { usePrevious } from 'react-native-hookbox';
+
+// ...
+
 const [state, setState] = useState(0);
 const prevState = usePrevious(state);
 
@@ -72,8 +84,12 @@ Returns the previous value in the previous render iteration if it is not empty.
 Do not consider any `null`, `undefined` and `NaN` values (or similar).
 
 ```ts
+import { usePreviousNotEmpty } from 'react-native-hookbox';
+
+// ...
+
 const [state, setState] = useState(0);
-const notEmptyPrevState = usePrevious(state);
+const notEmptyPrevState = usePreviousNotEmpty(state);
 
 // state: 0, notEmptyPrevState: undefined
 // state: 1, notEmptyPrevState: 0,
@@ -88,12 +104,14 @@ const notEmptyPrevState = usePrevious(state);
 ### useSpecificKeyExtractor
 
 ```tsx
+import { useSpecificKeyExtractor } from 'react-native-hookbox';
+
 // ...
+
 // 'some-data-element' is a just prefix for a convenient debugging when you check nodes in React DevTools
 // 'id' should be included in 'SomeDataType'
 const keyExtractor = useSpecificKeyExtractor<SomeDataType>('some-data-element', 'id');
 
-// ...
 return (
   <FlatList
     data={data}
@@ -101,6 +119,7 @@ return (
     renderItem={renderItem}
   />
 );
+
 // ...
 ```
 
@@ -109,6 +128,10 @@ return (
 Combines useState and usePrevious hooks.
 
 ```ts
+import { useStateWithPrevious } from 'react-native-hookbox';
+
+// ...
+
 const [state, setState, prevState] = useStateWithPrevious(0);
 
 // state: 0, prevState: undefined
@@ -123,6 +146,10 @@ Extended useState for boolean values.
 Return `[value, toggleValue]` array.
 
 ```ts
+import { useToggle } from 'react-native-hookbox';
+
+// ...
+
 const [value, toggleValue] = useToggle(false);
 
 // ...
@@ -141,6 +168,10 @@ const onPress = () => {
 useEffect that does not run on the first render.
 
 ```ts
+import { useUpdateEffect } from 'react-native-hookbox';
+
+// ...
+
 const [counter, setCounter] = useState(0);
 
 // only after new value appears
