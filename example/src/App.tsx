@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 // eslint-disable-next-line import/no-unresolved
-import { useAppState, useCachedState, useDebouncedValue, useMount } from 'react-native-hookbox';
+import { useAppState, useDebouncedValue, useMount, useStateWithPrevious } from 'react-native-hookbox';
 
 const styles = StyleSheet.create({
   container: {
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
 
 // eslint-disable-next-line import/no-default-export
 export default function App() {
-  const [prevCounter, counter, setCounter] = useCachedState(0);
+  const [counter, setCounter, prevCounter] = useStateWithPrevious(0);
 
   useMount(() => {
     setCounter(10);
