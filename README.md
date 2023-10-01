@@ -29,6 +29,29 @@ useEffect(() => {
 }, [appState]);
 ```
 
+### useCached
+
+Returns the cached non-empty value of the current value.
+Do not consider any `null`, `undefined` and `NaN` values (or similar).
+
+```ts
+import { useCached } from 'react-native-hookbox';
+
+// ...
+
+const [state, setState] = useState(0);
+const cachedState = useCached(state);
+
+// state: 0, cachedState: 0
+// state: 1, cachedState: 1,
+// state: 2, cachedState: 2,
+// state: undefined, cachedState: 2,
+// state: null, cachedState 2,
+// state: 10, cachedState: 10,
+// state: 11, cachedState: 11,
+// ...
+```
+
 ### useDebouncedValue
 
 A bit delayed value of the state.
@@ -96,29 +119,6 @@ const prevState = usePrevious(state);
 // ...
 ```
 
-### usePreviousNotEmpty
-
-Returns the previous value in the previous render iteration if it is not empty.
-Do not consider any `null`, `undefined` and `NaN` values (or similar).
-
-```ts
-import { usePreviousNotEmpty } from 'react-native-hookbox';
-
-// ...
-
-const [state, setState] = useState(0);
-const notEmptyPrevState = usePreviousNotEmpty(state);
-
-// state: 0, notEmptyPrevState: undefined
-// state: 1, notEmptyPrevState: 0,
-// state: 2, notEmptyPrevState: 1,
-// state: undefined, notEmptyPrevState: 2,
-// state: null, notEmptyPrevState 2,
-// state: 10, notEmptyPrevState: 2,
-// state: 11, notEmptyPrevState: 10,
-// ...
-```
-
 ### useSpecificKeyExtractor
 
 ```tsx
@@ -156,6 +156,27 @@ const [state, setState, prevState] = useStateWithPrevious(0);
 // state: 1, prevState: 0,
 // state: 2, prevState: 1,
 // state: 0, prevState: 2,
+```
+
+### useStateWithCached
+
+Combines useState and useCached hooks.
+
+```ts
+import { useStateWithCached } from 'react-native-hookbox';
+
+// ...
+
+const [state, setState, cachedState] = useStateWithCached(0);
+
+// state: 0, cachedState: 0
+// state: 1, cachedState: 1,
+// state: 2, cachedState: 2,
+// state: null, cachedState: 2,
+// state: 4, cachedState: 4,
+// state: undefined, cachedState: 4,
+// state: 6, cachedState: 6,
+// state: 7, cachedState: 7,
 ```
 
 ### useToggle
