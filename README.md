@@ -68,6 +68,34 @@ const debouncedState = useDebouncedValue(state, 1000);
 // ...
 ```
 
+### useDeepCompareEffect
+
+useEffect with deep comparison of dependencies instead of shalow comparison by the default.
+
+```ts
+import { useDeepCompareEffect } from 'react-native-hookbox';
+
+// ...
+
+const [state, setState] = useState({ name: 'John' });
+
+// ...
+
+useDeepCompareEffect(() => {
+  console.log('state has been updated (even if not a link for object)');
+}, [state]);
+
+// ...
+
+// The same link for object, but another properties inside
+setState(prev => {
+  prev.name = 'Roman';
+  return prev;
+});
+
+// It will trigger the deepCompareEffect above
+```
+
 ### useKeyboardListeners
 
 ```ts
