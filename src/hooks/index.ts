@@ -1,6 +1,7 @@
 export * from './useAppState';
 export * from './useCached';
 export * from './useDebouncedValue';
+export * from './useDeepCompareEffect';
 export * from './useKeyboardListeners';
 export * from './useMount';
 export * from './usePrevious';
