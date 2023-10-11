@@ -29,6 +29,32 @@ useEffect(() => {
 }, [appState]);
 ```
 
+### useAsync
+
+Async wrapper for async/await functions with Promise return.
+
+```ts
+// file1 (API or something)
+const someAsyncFn = async () => 'async data';
+
+// file2 (Component)
+import { useAsync } from 'react-native-hookbox';
+
+// ...
+
+const { data, error, isLoading } = useAsync(someAsyncFn);
+
+useEffect(() => {
+  console.log('new data:', data);
+}, [data]);
+
+useEffect(() => {
+  console.log('error:', error);
+}, [error]);
+
+// usage of 'isLoading' if you need
+```
+
 ### useCached
 
 Returns the cached non-empty value of the current value.

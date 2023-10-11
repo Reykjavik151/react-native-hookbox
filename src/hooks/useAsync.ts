@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
 
+/**
+ * Async wrapper for async/await functions with Promise return
+ * @param asyncFn should return promise
+ * @returns data - expected value of "asyncFn", error - something went wrong (unexpected), loading - is asyncFn running
+ */
 export const useAsync = <TExpectedData>(asyncFn: () => Promise<TExpectedData>) => {
   const [data, setData] = useState<TExpectedData | null>(null);
   const [error, setError] = useState<Error | null>(null);
