@@ -1,4 +1,5 @@
 export * from './useAppState';
+export * from './useAsync';
 export * from './useCached';
 export * from './useDebouncedValue';
 export * from './useDeepCompareEffect';
