@@ -8,5 +8,6 @@ export * from './useMount';
 export * from './usePrevious';
 export * from './useSpecificKeyExtractor';
 export * from './useStateWithPrevious';
+export * from './useStateWithValidation';
 export * from './useToggle';
 export * from './useUpdateEffect';

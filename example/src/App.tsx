@@ -1,7 +1,13 @@
 import React, { useCallback } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-// eslint-disable-next-line import/no-unresolved
-import { useAppState, useDebouncedValue, useMount, useStateWithPrevious } from 'react-native-hookbox';
+import {
+  useAppState,
+  useDebouncedValue,
+  useMount,
+  useStateWithPrevious,
+  useStateWithValidation,
+  // eslint-disable-next-line import/no-unresolved
+} from 'react-native-hookbox';
 
 const styles = StyleSheet.create({
   container: {
@@ -16,7 +22,7 @@ const styles = StyleSheet.create({
   },
   hooksInfoContainer: {
     borderWidth: 1,
-    padding: 70,
+    padding: 30,
     marginVertical: 20,
   },
   button: {
@@ -30,11 +36,24 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
   },
+  redText: {
+    color: 'red',
+  },
+  separator: {
+    height: 20,
+  },
+  sectionTitle: {
+    fontWeight: 'bold',
+  },
 });
 
 // eslint-disable-next-line import/no-default-export
 export default function App() {
   const [counter, setCounter, prevCounter] = useStateWithPrevious(0);
+  const [validatedCounter, setValidatedCounter, isValidValidatedCounter] = useStateWithValidation(
+    0,
+    value => value >= 5,
+  );
 
   useMount(() => {
     setCounter(10);
@@ -48,19 +67,38 @@ export default function App() {
     setCounter(prev => prev + 1);
   }, [setCounter]);
 
+  const incrementValidatedCounter = useCallback(() => {
+    setValidatedCounter(prev => prev + 1);
+  }, [setValidatedCounter]);
+
   const reset = useCallback(() => {
     setCounter(0);
   }, [setCounter]);
 
+  const resetValidatedCounter = useCallback(() => {
+    setValidatedCounter(0);
+  }, [setValidatedCounter]);
+
   return (
     <View style={styles.container}>
       <View style={styles.hooksInfoContainer}>
-        <Text>AppState: {appState}</Text>
-        <Text>CachedState, prev: {prevCounter}</Text>
-        <Text>Debounced: {debouncedCounter}</Text>
-      </View>
+        <Text style={styles.sectionTitle}>APP STATE</Text>
+        <Text>current: {appState}</Text>
 
-      <Text>COUNTER VALUE: {counter}</Text>
+        <Text />
+
+        <Text style={styles.sectionTitle}>COUNTER</Text>
+        <Text>Counter value: {counter}</Text>
+        <Text>Cached: {prevCounter}</Text>
+        <Text>Debounced: {debouncedCounter}</Text>
+
+        <Text />
+        <Text style={styles.sectionTitle}>VALIDATED COUNTER</Text>
+        <Text>Validated counter: {validatedCounter}</Text>
+        <Text style={!isValidValidatedCounter && styles.redText}>
+          Validated counter {'>'}= 5: {isValidValidatedCounter.toString()}
+        </Text>
+      </View>
 
       <TouchableOpacity
         style={styles.button}
@@ -74,6 +112,22 @@ export default function App() {
         onPress={reset}
       >
         <Text style={styles.buttonTitle}>Reset counter value</Text>
+      </TouchableOpacity>
+
+      <View style={styles.separator} />
+
+      <TouchableOpacity
+        style={styles.button}
+        onPress={incrementValidatedCounter}
+      >
+        <Text style={styles.buttonTitle}>Increment validated counter value</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={styles.button}
+        onPress={resetValidatedCounter}
+      >
+        <Text style={styles.buttonTitle}>Reset validated counter value</Text>
       </TouchableOpacity>
     </View>
   );

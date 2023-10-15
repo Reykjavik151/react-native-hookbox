@@ -195,23 +195,6 @@ return (
 // ...
 ```
 
-### useStateWithPrevious
-
-Combines useState and usePrevious hooks.
-
-```ts
-import { useStateWithPrevious } from 'react-native-hookbox';
-
-// ...
-
-const [state, setState, prevState] = useStateWithPrevious(0);
-
-// state: 0, prevState: undefined
-// state: 1, prevState: 0,
-// state: 2, prevState: 1,
-// state: 0, prevState: 2,
-```
-
 ### useStateWithCached
 
 Combines useState and useCached hooks.
@@ -231,6 +214,43 @@ const [state, setState, cachedState] = useStateWithCached(0);
 // state: undefined, cachedState: 4,
 // state: 6, cachedState: 6,
 // state: 7, cachedState: 7,
+```
+
+### useStateWithPrevious
+
+Combines useState and usePrevious hooks.
+
+```ts
+import { useStateWithPrevious } from 'react-native-hookbox';
+
+// ...
+
+const [state, setState, prevState] = useStateWithPrevious(0);
+
+// state: 0, prevState: undefined
+// state: 1, prevState: 0,
+// state: 2, prevState: 1,
+// state: 0, prevState: 2,
+```
+
+### useStateWithValidation
+
+Validate the state value when it updates and return the boolean value of passed / failed validation as third param of the output array.
+
+```ts
+export { useStateWithValidation } from 'react-native-hookbox';
+
+// ...
+
+const [state, setState, isValid] = useStateWithValidation(0, value => value > 0);
+
+// state: 0, isValid: false
+// setState(1)
+// state: 1, isValid: true,
+// setState(-1)
+// state: -1, isValid: false,
+// setState(10)
+// state: 10, isValid: true,
 ```
 
 ### useToggle
