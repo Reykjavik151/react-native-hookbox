@@ -3,6 +3,7 @@ export * from './useAsync';
 export * from './useCached';
 export * from './useDebouncedValue';
 export * from './useDeepCompareEffect';
+export * from './useFetch';
 export * from './useKeyboardListeners';
 export * from './useMount';
 export * from './usePrevious';

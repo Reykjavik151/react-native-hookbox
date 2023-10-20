@@ -122,6 +122,22 @@ setState(prev => {
 // It will trigger the deepCompareEffect above
 ```
 
+### useFetch
+
+Fetch data from an API
+
+```ts
+import { useFetch } from 'react-native-hookbox;
+
+// ...
+
+const MyComponent = () => {
+ const [data, loading, error] = useFetch('https://jsonplaceholder.typicode.com/todos/1', {});
+
+ // ...
+};
+```
+
 ### useKeyboardListeners
 
 ```ts
