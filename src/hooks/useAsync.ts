@@ -11,6 +11,10 @@ export const useAsync = <TExpectedData>(asyncFn: () => Promise<TExpectedData>) =
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
+    setData(null);
+    setError(null);
+    setIsLoading(false);
+
     const fetchData = async () => {
       setIsLoading(true);
       try {
