@@ -343,7 +343,7 @@ import { useVibration } from 'react-native-hookbox';
 
 // ...
 
-const { vibrate, cancelViration } = useVibration();
+const { vibrate, cancelVibration } = useVibration();
 
 const SomeComponent = () => {
   const { vibrate, cancelVibration } = useVibration();
