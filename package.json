@@ -1,6 +1,6 @@
 {
   "name": "react-native-hookbox",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "description": "Outstanding set of the most powerful React Hooks!",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -102,7 +102,7 @@
   "engines": {
     "node": ">= 18.0.0"
   },
-  "packageManager": "^yarn@1.22.15",
+  "packageManager": "^yarn@1.22.19",
   "jest": {
     "preset": "react-native",
     "modulePathIgnorePatterns": [
