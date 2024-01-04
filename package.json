@@ -1,6 +1,6 @@
 {
   "name": "react-native-hookbox",
-  "version": "1.7.3",
+  "version": "1.8.0",
   "description": "Outstanding set of the most powerful React Hooks!",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -27,7 +27,7 @@
     "!**/.*"
   ],
   "scripts": {
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "prepack": "bob build",

@@ -122,6 +122,28 @@ setState(prev => {
 // It will trigger the deepCompareEffect above
 ```
 
+### useDeviceOrientation
+
+Detects the current orientation of the device.
+
+```ts
+import { useDeviceOrientation } from 'react-native-hookbox';
+
+// ...
+
+const orientation = useDeviceOrientation();
+
+useEffect(() => {
+  if (orientation === 'portrait') {
+    // Portrait mode
+    // ...
+  } else {
+    // Landscape mode
+    // ...
+  }
+}, [orientation]);
+```
+
 ### useFetch
 
 Fetch data from an API
@@ -310,6 +332,38 @@ useUpdateEffect(() => {
 }, [counter]);
 
 // setCounter(1) -> 'counter has been updated' in the console
+```
+
+### useVibration
+
+Vibrate the device.
+
+```ts
+import { useVibration } from 'react-native-hookbox';
+
+// ...
+
+const { vibrate, cancelViration } = useVibration();
+
+const SomeComponent = () => {
+  const { vibrate, cancelVibration } = useVibration();
+
+  const onVibratePress = () => {
+    // Vibrate for 500 milliseconds
+    vibrate(500);
+  };
+
+  return (
+    <View>
+      <TouchableOpacity onPress={onVibratePress}>
+        <Text>Vibrate Now</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={cancelVibration}>
+        <Text>Cancel Vibration</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
 ```
 
 ## Contributing
