@@ -4,6 +4,12 @@ Outstanding set of the most powerful React Hooks!
 
 ## Installation
 
+NPM:
+```sh
+npm install react-native-hookbox
+```
+
+Yarn:
 ```sh
 yarn add react-native-hookbox
 ```
@@ -149,7 +155,7 @@ useEffect(() => {
 Fetch data from an API
 
 ```ts
-import { useFetch } from 'react-native-hookbox;
+import { useFetch } from 'react-native-hookbox';
 
 // ...
 
