@@ -5,11 +5,13 @@ Outstanding set of the most powerful React Hooks!
 ## Installation
 
 NPM:
+
 ```sh
 npm install react-native-hookbox
 ```
 
 Yarn:
+
 ```sh
 yarn add react-native-hookbox
 ```
@@ -84,6 +86,43 @@ const cachedState = useCached(state);
 // ...
 ```
 
+### useCountdown
+
+Makes the countdown with some interval (step). Calls `onEnd` function if it exists at the end.
+Provides `timeLeft`, `isPaused` fields and `setNewRemainingTime`, `resetCountdown`, `pauseCountdown`, `resumeCountdown` methods for countdown manipulation.
+
+```ts
+import { useCountdown } from 'react-native-hookbox';
+
+// ...
+
+// The coundown will be updated each 500ms. 60000 -> 59500 -> 59000 -> 58500 -> ... -> 500 -> 0
+// The console.log will output when the `timeLeft` will be equal to 0.
+const {
+  timeLeft,
+  isPaused,
+  setNewRemainingTime,
+  resetCountdown,
+  pauseCountdown,
+  resumeCountdown,
+} = useCountdown({
+  initialRemainingTimeMs: 60000,
+  onEnd: () => console.log('finish'),
+  countdownStepMs: 500,
+});
+
+// timeLeft will be equal 60000 after this call.
+const onSetNewRemainingTime = () => {
+  setNewRemainingTime(60000);
+};
+
+// `resetCountdown` will reset `timeLeft` to 0 and pause the timer.
+
+// `pauseCountdown` will pause the countdown and provide the updated value with `isPaused`
+
+// `resumeCountdown` will resume the countdown and provide the updated value with `isPaused`
+```
+
 ### useDebouncedValue
 
 A bit delayed value of the state.
@@ -120,7 +159,7 @@ useDeepCompareEffect(() => {
 // ...
 
 // The same link for object, but another properties inside
-setState(prev => {
+setState((prev) => {
   prev.name = 'Roman';
   return prev;
 });
@@ -160,9 +199,12 @@ import { useFetch } from 'react-native-hookbox';
 // ...
 
 const MyComponent = () => {
- const [data, loading, error] = useFetch('https://jsonplaceholder.typicode.com/todos/1', {});
+  const [data, loading, error] = useFetch(
+    'https://jsonplaceholder.typicode.com/todos/1',
+    {}
+  );
 
- // ...
+  // ...
 };
 ```
 
@@ -226,14 +268,13 @@ import { useSpecificKeyExtractor } from 'react-native-hookbox';
 
 // 'some-data-element' is a just prefix for a convenient debugging when you check nodes in React DevTools
 // 'id' should be included in 'SomeDataType'
-const keyExtractor = useSpecificKeyExtractor<SomeDataType>('some-data-element', 'id');
+const keyExtractor = useSpecificKeyExtractor<SomeDataType>(
+  'some-data-element',
+  'id'
+);
 
 return (
-  <FlatList
-    data={data}
-    keyExtractor={keyExtractor}
-    renderItem={renderItem}
-  />
+  <FlatList data={data} keyExtractor={keyExtractor} renderItem={renderItem} />
 );
 
 // ...
@@ -286,7 +327,10 @@ export { useStateWithValidation } from 'react-native-hookbox';
 
 // ...
 
-const [state, setState, isValid] = useStateWithValidation(0, value => value > 0);
+const [state, setState, isValid] = useStateWithValidation(
+  0,
+  (value) => value > 0
+);
 
 // state: 0, isValid: false
 // setState(1)
