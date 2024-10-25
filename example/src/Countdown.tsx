@@ -15,7 +15,11 @@ export const Countdown = () => {
     setNewRemainingTime,
   } = useCountdown({
     initialRemainingTimeMs: 60000,
-    countdownStepMs: 20,
+    countdownStepMs: 400,
+    onTick: (currentTimeLeft) => {
+      // eslint-disable-next-line no-console
+      console.log('Countdown tick:', currentTimeLeft);
+    },
     onEnd: () => {
       // eslint-disable-next-line no-console
       console.log('Countdown ended!');

@@ -3,10 +3,11 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 type UseCountdownProps = {
   initialRemainingTimeMs: number;
   onEnd?: () => void;
+  onTick?: (timeLeft: number) => void;
   countdownStepMs?: number;
 }
 
-export const useCountdown = ({ initialRemainingTimeMs, onEnd, countdownStepMs = 1000 }: UseCountdownProps) => {
+export const useCountdown = ({ initialRemainingTimeMs, onEnd, onTick, countdownStepMs = 1000 }: UseCountdownProps) => {
   const [timeLeft, setTimeLeft] = useState<number>(initialRemainingTimeMs);
   const [isPaused, setIsPaused] = useState<boolean>(false);
 
@@ -24,11 +25,13 @@ export const useCountdown = ({ initialRemainingTimeMs, onEnd, countdownStepMs = 
             return 0;
           }
           
-          return prev - countdownStepMs;
+          const newTime = prev - countdownStepMs;
+          onTick?.(newTime);
+          return newTime;
         });
       }, countdownStepMs);
     }
-  }, [countdownStepMs, onEnd]);
+  }, [countdownStepMs, onEnd, onTick]);
   const stopTimer = useCallback(() => {
     if (timerRef.current) {
       clearInterval(timerRef.current);
