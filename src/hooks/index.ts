@@ -6,6 +6,7 @@ export * from './useDebouncedValue';
 export * from './useDeepCompareEffect';
 export * from './useDeviceOrientation';
 export * from './useFetch';
+export * from './useKeyboardHeight';
 export * from './useKeyboardListeners';
 export * from './useMount';
 export * from './usePrevious';

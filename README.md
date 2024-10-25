@@ -210,6 +210,26 @@ const MyComponent = () => {
 };
 ```
 
+### useKeyboardHeight
+
+A hook that returns the current keyboard height in pixels when the keyboard is visible, allowing responsive UI adjustments.
+
+```ts
+import { useKeyboardHeight } from 'react-native-hookbox';
+
+// ...
+
+const MyComponent = () => {
+  const keyboardHeight = useKeyboardHeight();
+
+  return (
+    <View style={{ paddingBottom: keyboardHeight }}>
+      <TextInput placeholder="Type here..." />
+    </View>
+  );
+};
+```
+
 ### useKeyboardListeners
 
 ```ts
