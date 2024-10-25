@@ -97,7 +97,8 @@ import { useCountdown } from 'react-native-hookbox';
 // ...
 
 // The coundown will be updated each 500ms. 60000 -> 59500 -> 59000 -> 58500 -> ... -> 500 -> 0
-// The console.log will output when the `timeLeft` will be equal to 0.
+// The `onTick` console.log will output 'tick 59500' -> 'tick 59000' -> 'tick 58500' ... -> 'tick 500'
+// The console.log will output 'finish' when the `timeLeft` will be equal to 0.
 const {
   timeLeft,
   isPaused,
@@ -107,6 +108,7 @@ const {
   resumeCountdown,
 } = useCountdown({
   initialRemainingTimeMs: 60000,
+  onTick: (currentTimeLeft: number) => console.log('tick', currentTimeLeft),
   onEnd: () => console.log('finish'),
   countdownStepMs: 500,
 });

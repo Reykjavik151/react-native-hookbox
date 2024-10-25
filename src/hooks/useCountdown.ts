@@ -1,13 +1,34 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-type UseCountdownProps = {
+type UseCountdownOptions = {
   initialRemainingTimeMs: number;
   onEnd?: () => void;
   onTick?: (timeLeft: number) => void;
   countdownStepMs?: number;
 }
 
-export const useCountdown = ({ initialRemainingTimeMs, onEnd, onTick, countdownStepMs = 1000 }: UseCountdownProps) => {
+/**
+ * Hook to manage a countdown timer
+ * 
+ * @param options initialRemainingTimeMs: number; onEnd?: () => void; onTick?: (timeLeft: number) => void; countdownStepMs?: number;
+ * @returns set of functions and values to manage a countdown, including pause, resume, reset, and setting a new time
+ * 
+ * @example
+ * const {
+ *   timeLeft,
+ *   isPaused,
+ *   resetCountdown,
+ *   pauseCountdown,
+ *   resumeCountdown,
+ *   setNewRemainingTime,
+ * } = useCountdown({
+ *   initialRemainingTimeMs: 60000,
+ *   countdownStepMs: 400,
+ *   onTick: (currentTimeLeft) => { console.log('Countdown tick:', currentTimeLeft); },
+ *   onEnd: () => { console.log('Countdown ended!'); },
+ * });
+ */
+export const useCountdown = ({ initialRemainingTimeMs, onEnd, onTick, countdownStepMs = 1000 }: UseCountdownOptions) => {
   const [timeLeft, setTimeLeft] = useState<number>(initialRemainingTimeMs);
   const [isPaused, setIsPaused] = useState<boolean>(false);
 
